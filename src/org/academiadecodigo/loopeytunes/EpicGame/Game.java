@@ -9,7 +9,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 
 public class Game {
-    private static final int DELAY = 1000;
+    private static final int DELAY = 2000;
     private static final int FOOD_TOTAL = 20;
     public static Food foodItem;
     private Character player1;
@@ -44,14 +44,13 @@ public class Game {
             foodItem = FoodFactory.makeFood();
 
 
-
             Thread.sleep(DELAY);
 
 
         }
 
-    }
 
+    }
 
 
     public void chekPressed() {

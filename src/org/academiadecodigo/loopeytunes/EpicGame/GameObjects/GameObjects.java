@@ -7,8 +7,9 @@ public class GameObjects {
     private Picture picture;
 
     //Falta a picture
-    public GameObjects(int score) {
+    public GameObjects(int score,Picture picture) {
         this.score = score;
+        this.picture=picture;
     }
 
     public Picture getPicture(){

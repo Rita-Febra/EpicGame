@@ -17,18 +17,23 @@ public class Character extends GameObjects implements KeyboardHandler {
 
 
     public void eat(int score) {
-        System.out.println(type + " " + this.score);
+        //System.out.println(type + " " + this.score);
         this.score += score;
+        Game.foodItem.getsEaten();
         System.out.println(type + " " + this.score);
     }
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_A) {
-            eat(Game.foodItem.score);
+            if (!Game.foodItem.wasEaten()) {
+                eat(Game.foodItem.score);
+            }
         }
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_K) {
-            eat(Game.foodItem.score);
+            if (!Game.foodItem.wasEaten()) {
+                eat(Game.foodItem.score);
+            }
         }
     }
 
