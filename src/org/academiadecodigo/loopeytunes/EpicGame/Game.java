@@ -14,7 +14,6 @@ public class Game {
     public static Food foodItem;
     private Character player1;
     private Character player2;
-    private Field field;
     private Keyboard kbPlayer1;
     private Keyboard kbPlayer2;
     private KeyboardEvent aPressed;
@@ -25,7 +24,7 @@ public class Game {
     }
 
     public void init() {
-        // field.generateField();
+        Field.generateField();
         player1 = new Character(CharactersType.TAZ);
         player2 = new Character(CharactersType.PORKY);
 
@@ -45,6 +44,8 @@ public class Game {
 
 
             Thread.sleep(DELAY);
+            foodItem.getPicture().delete();
+            Thread.sleep(DELAY/2);
 
 
         }

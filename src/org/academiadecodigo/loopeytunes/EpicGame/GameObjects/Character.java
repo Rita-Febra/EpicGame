@@ -4,12 +4,13 @@ package org.academiadecodigo.loopeytunes.EpicGame.GameObjects;
 import org.academiadecodigo.loopeytunes.EpicGame.Game;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Character extends GameObjects implements KeyboardHandler {
     private CharactersType type;
 
     public Character(CharactersType type) {
-        super(0);
+        super(0, new Picture(0, 0,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/poop.png"));
         this.type = type;
     }
 

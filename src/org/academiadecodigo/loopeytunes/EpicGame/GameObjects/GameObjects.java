@@ -4,16 +4,16 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class GameObjects {
     protected int score;
-    private Picture picture;
+    protected Picture body;
 
-    //Falta a picture
-    public GameObjects(int score,Picture picture) {
+    public GameObjects(int score, Picture body) {
         this.score = score;
-        this.picture=picture;
+        this.body = body;
+        body.draw();
     }
 
     public Picture getPicture(){
-       return null;
+       return body;
     }
 
     public int getScore() {
