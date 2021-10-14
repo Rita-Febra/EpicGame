@@ -10,30 +10,29 @@ public class Character extends GameObjects implements KeyboardHandler {
     private CharactersType type;
 
     public Character(CharactersType type) {
-        super(0, new Picture(0, 0,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/poop.png"));
+        super(0, 0,0,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/Taz2.png");
         this.type = type;
     }
 
-    // keyboardSetKey()
 
-
-    public void eat(int score) {
-        //System.out.println(type + " " + this.score);
+    public void eat(int score,int col, int row, String path) {
+        changePic(col,row,path);
         this.score += score;
         Game.foodItem.getsEaten();
-        System.out.println(type + " " + this.score);
+
     }
+
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_A) {
             if (!Game.foodItem.wasEaten()) {
-                eat(Game.foodItem.score);
+                eat(Game.foodItem.score, 230,350 ,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/Taz1.png");
             }
         }
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_K) {
             if (!Game.foodItem.wasEaten()) {
-                eat(Game.foodItem.score);
+                eat(Game.foodItem.score, 900, 350,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/Coyote1.png");
             }
         }
     }

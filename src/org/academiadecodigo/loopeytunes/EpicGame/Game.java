@@ -25,30 +25,35 @@ public class Game {
 
     public void init() {
         Field.generateField();
-        player1 = new Character(CharactersType.TAZ);
-        player2 = new Character(CharactersType.PORKY);
-
 
     }
 
     public void start() throws InterruptedException {
+        player1 = new Character(CharactersType.TAZ);
+        player2 = new Character(CharactersType.PORKY);
         startEngine();
     }
 
     public void startEngine() throws InterruptedException {
         chekPressed();
         for (int i = 0; i < FOOD_TOTAL; i++) {
-
-            System.out.println(2);
+            player1.changePic(230,350,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/Taz2.png");
+            player2.changePic(900,350,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/coyote2.png");
             foodItem = FoodFactory.makeFood();
-
-
             Thread.sleep(DELAY);
             foodItem.getPicture().delete();
             Thread.sleep(DELAY/2);
 
-
         }
+
+
+        if (player1.getScore() > player2.getScore()) {
+            System.out.println("Player 1 wins");
+        }
+        if (player1.getScore() == player2.getScore()) {
+            System.out.println("It's a tie");
+        }
+        System.out.println("Player 2 wins");
 
 
     }

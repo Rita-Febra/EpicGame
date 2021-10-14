@@ -13,5 +13,6 @@ public class FoodFactory {
         return (FoodType.chooseType() == FoodType.GOOD)
                 ? new Food(FoodType.GOOD, 20, "/Users/codecadet/Desktop/EpicGame/epicgame/Pics/Avocado.png")
                 : new Food(FoodType.BAD, -10,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/poop.png");
+
     }
 }
