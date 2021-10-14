@@ -4,13 +4,14 @@ import org.academiadecodigo.loopeytunes.EpicGame.Factorys.FoodFactory;
 import org.academiadecodigo.loopeytunes.EpicGame.GameObjects.Character;
 import org.academiadecodigo.loopeytunes.EpicGame.GameObjects.CharactersType;
 import org.academiadecodigo.loopeytunes.EpicGame.GameObjects.Food;
+import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 
 public class Game {
     private static final int DELAY = 2000;
-    private static final int FOOD_TOTAL = 2;
+    private static final int FOOD_TOTAL = 15;
     public static Food foodItem;
     private Character player1;
     private Character player2;
@@ -18,7 +19,8 @@ public class Game {
     private Keyboard kbPlayer2;
     private KeyboardEvent aPressed;
     private KeyboardEvent kPressed;
-
+    private Text scorePlayer1;
+    private Text scorePlayer2;
 
     public Game() {
     }
@@ -30,16 +32,22 @@ public class Game {
 
     public void start() throws InterruptedException {
         playerCreat();
+        scoreAppear();
         startEngine();
     }
 
     public void startEngine() throws InterruptedException {
         commandsOn();
+
         for (int i = 0; i < FOOD_TOTAL; i++) {
             playerAppear();
-            Thread.sleep(DELAY / 2);
+            scoreUpdate();
+
+
+            Thread.sleep(DELAY );
             foodItem = FoodFactory.makeFood();
-            Thread.sleep(DELAY);
+            Thread.sleep(DELAY/2);
+
             foodItem.getPicture().delete();
 
         }
@@ -47,15 +55,18 @@ public class Game {
         if (player1.getScore() > player2.getScore()) {
             System.out.println("Player 1 wins");
             Field.playerOneVictory();
+            scoreAppear();
             return;
         }
         if (player1.getScore() == player2.getScore()) {
             System.out.println("It's a tie");
             Field.Draw();
+            scoreAppear();
             return;
         }
         System.out.println("Player 2 wins");
         Field.PlayerTwoVictory();
+        scoreAppear();
 
     }
 
@@ -90,6 +101,20 @@ public class Game {
         keyboardEventName.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
 
+    }
+
+    public void scoreAppear() {
+        scorePlayer1 = new Text(90, 50, "Score: " + player1.getScore());
+        scorePlayer2 = new Text(1150, 50, "Score: " + player2.getScore());
+        scorePlayer1.grow(40, 15);
+        scorePlayer2.grow(40, 15);
+        scorePlayer1.draw();
+        scorePlayer2.draw();
+    }
+
+    public void scoreUpdate() {
+        scorePlayer1.setText("Score: " + player1.getScore());
+        scorePlayer2.setText("Score: " + player2.getScore());
     }
 
 
