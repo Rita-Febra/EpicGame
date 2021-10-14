@@ -13,7 +13,6 @@ public class Food extends GameObjects {
         body.grow(-50, -50);
         eaten =false;
         this.type = type;
-        System.out.println("my type is " + type);
     }
 
     public void getsEaten() {
