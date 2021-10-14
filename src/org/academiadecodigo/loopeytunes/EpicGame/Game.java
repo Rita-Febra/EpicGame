@@ -39,10 +39,11 @@ public class Game {
         for (int i = 0; i < FOOD_TOTAL; i++) {
             player1.changePic(230,350,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/Taz2.png");
             player2.changePic(900,350,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/coyote2.png");
+            Thread.sleep(DELAY/2);
             foodItem = FoodFactory.makeFood();
             Thread.sleep(DELAY);
             foodItem.getPicture().delete();
-            Thread.sleep(DELAY/2);
+            
 
         }
 
