@@ -11,7 +11,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 
 public class Game {
     private static final int DELAY = 2000;
-    private static final int FOOD_TOTAL = 1;
+    private static final int FOOD_TOTAL = 15;
     public static Food foodItem;
     private Character player1;
     private Character player2;

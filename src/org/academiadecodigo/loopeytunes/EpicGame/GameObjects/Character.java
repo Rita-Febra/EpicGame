@@ -32,7 +32,7 @@ public class Character extends GameObjects implements KeyboardHandler {
         }
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_K) {
             if (!Game.foodItem.wasEaten()) {
-                eat(Game.foodItem.score, 680, 350,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/Coyote1.png");
+                eat(Game.foodItem.score, 680, 350,"Pics/Coyote1.png");
             }
         }
     }
