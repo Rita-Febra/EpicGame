@@ -2,7 +2,6 @@ package org.academiadecodigo.loopeytunes.EpicGame;
 
 import org.academiadecodigo.loopeytunes.EpicGame.Factorys.FoodFactory;
 import org.academiadecodigo.loopeytunes.EpicGame.GameObjects.Character;
-import org.academiadecodigo.loopeytunes.EpicGame.GameObjects.CharactersType;
 import org.academiadecodigo.loopeytunes.EpicGame.GameObjects.Food;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -11,19 +10,12 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 
 public class Game {
     private static final int DELAY = 2000;
-    private static final int FOOD_TOTAL = 15;
+    private static final int FOOD_TOTAL = 10;
     public static Food foodItem;
     private Character player1;
     private Character player2;
-    private Keyboard kbPlayer1;
-    private Keyboard kbPlayer2;
-    private KeyboardEvent aPressed;
-    private KeyboardEvent kPressed;
     private Text scorePlayer1;
     private Text scorePlayer2;
-
-    public Game() {
-    }
 
     public void init() {
         Field.generateField();
@@ -50,30 +42,28 @@ public class Game {
 
             foodItem.getPicture().delete();
 
-
         }
 
         if (player1.getScore() > player2.getScore()) {
             System.out.println("Player 1 wins");
             Field.playerOneVictory();
-            scoreAppear();
             return;
         }
+
         if (player1.getScore() == player2.getScore()) {
             System.out.println("It's a tie");
             Field.Draw();
-            scoreAppear();
             return;
         }
+
         System.out.println("Player 2 wins");
         Field.PlayerTwoVictory();
-        scoreAppear();
 
     }
 
     public void playerCreat() {
-        player1 = new Character(CharactersType.TAZ);
-        player2 = new Character(CharactersType.COYOTE);
+        player1 = new Character();
+        player2 = new Character();
     }
 
     public void playerAppear() {
@@ -82,25 +72,22 @@ public class Game {
     }
 
     public void commandsOn() {
-        kbPlayer1 = new Keyboard(player1);
-        aPressed = new KeyboardEvent();
+        Keyboard kbPlayer1 = new Keyboard(player1);
+        KeyboardEvent aPressed = new KeyboardEvent();
         setCommands(aPressed, KeyboardEvent.KEY_A);
 
-        kbPlayer2 = new Keyboard(player2);
-        kPressed = new KeyboardEvent();
+        Keyboard kbPlayer2 = new Keyboard(player2);
+        KeyboardEvent kPressed = new KeyboardEvent();
         setCommands(kPressed, KeyboardEvent.KEY_K);
 
         kbPlayer1.addEventListener(aPressed);
         kbPlayer2.addEventListener(kPressed);
 
-
     }
-
 
     public void setCommands(KeyboardEvent keyboardEventName, int keyboardEvent) {
         keyboardEventName.setKey(keyboardEvent);
         keyboardEventName.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
 
     }
 
@@ -111,12 +98,12 @@ public class Game {
         scorePlayer2.grow(40, 15);
         scorePlayer1.draw();
         scorePlayer2.draw();
+
     }
 
     public void scoreUpdate() {
         scorePlayer1.setText("Score: " + player1.getScore());
         scorePlayer2.setText("Score: " + player2.getScore());
     }
-
 
 }
