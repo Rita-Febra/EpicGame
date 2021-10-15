@@ -10,7 +10,7 @@ public class Character extends GameObjects implements KeyboardHandler {
     private CharactersType type;
 
     public Character(CharactersType type) {
-        super(0, 0,0,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/Taz2.png");
+        super(0, 0,0,"Pics/Taz2.png");
         this.type = type;
     }
 
@@ -27,7 +27,7 @@ public class Character extends GameObjects implements KeyboardHandler {
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_A) {
             if (!Game.foodItem.wasEaten()) {
-                eat(Game.foodItem.score, 230,350 ,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/Taz1.png");
+                eat(Game.foodItem.score, 230,350 ,"Pics/Taz1.png");
             }
         }
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_K) {

@@ -77,8 +77,8 @@ public class Game {
     }
 
     public void playerAppear() {
-        player1.changePic(230, 350, "/Users/codecadet/Desktop/EpicGame/epicgame/Pics/Taz2.png");
-        player2.changePic(870, 350, "/Users/codecadet/Desktop/EpicGame/epicgame/Pics/coyote2.png");
+        player1.changePic(230, 350, "Pics/Taz2.png");
+        player2.changePic(870, 350, "Pics/coyote2.png");
     }
 
     public void commandsOn() {
