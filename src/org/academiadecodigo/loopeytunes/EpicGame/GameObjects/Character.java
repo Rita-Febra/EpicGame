@@ -9,7 +9,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Character extends GameObjects implements KeyboardHandler {
 
     public Character() {
-        super(0, 0,0,"Pics/Taz2.png");
+        super(0);
     }
 
     public void eat(int score,int col, int row, String path) {

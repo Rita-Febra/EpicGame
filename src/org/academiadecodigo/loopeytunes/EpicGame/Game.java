@@ -19,10 +19,7 @@ public class Game implements KeyboardHandler {
     private Text scorePlayer2;
     private boolean gameOn = false;
 
-    public void init() {
-        Field.generateField();
 
-    }
 
     public void start() throws InterruptedException {
         playerCreat();

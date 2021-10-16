@@ -11,12 +11,9 @@ public class Menu {
         Field.generateField();
         Field.generateStart();
         optionStart();
-
-
     }
 
     public void optionStart() throws InterruptedException {
-        game.init();
         Keyboard kbStart = new Keyboard(game);
         KeyboardEvent spacePress = new KeyboardEvent();
 

@@ -6,7 +6,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Field {
     private static final Picture FIELD = new Picture(10, 10, "Pics/Background.jpeg");
-    private static final Picture START = new Picture(350, 75, "Pics/Start-button-icon-on-transparent-background-PNG.png");
+    private static final Picture START = new Picture(493, 275, "Pics/Start-button.png");
     private static final Picture GAME_OVER_SCREEN = new Picture(10, 10, "Pics/GameOver.png");
     private static final Picture TAZ_WINS = new Picture(550, 420, "Pics/TazWins.png");
     private static final Picture COYOTE_WINS = new Picture(550, 270, "Pics/CoyoteWins.png");
@@ -20,9 +20,8 @@ public class Field {
     }
 
     public static void generateStart() {
-
+        System.out.println("ola");
         START.draw();
-        START.grow(-90,-90);
     }
 
     public static void playerOneVictory() {

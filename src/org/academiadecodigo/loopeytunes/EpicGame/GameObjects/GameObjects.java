@@ -6,9 +6,8 @@ public class GameObjects {
     protected int score;
     protected Picture body;
 
-    public GameObjects(int score, int col, int row, String path) {
+    public GameObjects(int score) {
         this.score = score;
-        changePic(col,row,path);
     }
 
     public void changePic(int col,int row,String src) {
