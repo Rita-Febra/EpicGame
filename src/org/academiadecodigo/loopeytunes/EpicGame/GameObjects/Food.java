@@ -5,7 +5,9 @@ public class Food extends GameObjects {
 
 
     public Food(int score, String path) {
-        super(score, 550,285,path);
+        super(score);
+        changePic(550,285,path);
+
         body.grow(-50, -50);
         eaten = false;
     }

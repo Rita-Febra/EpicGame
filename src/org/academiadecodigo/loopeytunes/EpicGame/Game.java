@@ -8,11 +8,15 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
-public class Game {
-    private static final int DELAY = 2000;
+
+public class Game implements KeyboardHandler {
+    private static final int MAXDELAY = 2000;
+    private static final int MINDELAY = 1000;
+
     private static final int FOOD_TOTAL = 10;
-    public static Food foodItem;
+    public static Food foodItem = new Food(0,"Pics/Transparent.png");
     private Character player1;
     private Character player2;
     private Text[] scoreText;
@@ -20,39 +24,40 @@ public class Game {
     Text scorePlayer1Shadow;
     Text scorePlayer2;
     Text scorePlayer2Shadow;
+    public static boolean gameOn = false;
 
-    public void init() {
-        Field.generateField();
-
-    }
 
     public void start() throws InterruptedException {
         playersCreation();
-        scoreAppearence();
+        scoreAppear();
         startEngine();
+
     }
 
     public void startEngine() throws InterruptedException {
         commandsOn();
-
+        while (!gameOn) {
+            Thread.sleep(MINDELAY);
+        }
+        Field.HideStart();
         for (int i = 0; i < FOOD_TOTAL; i++) {
             playersAppearence();
             scoreUpdate();
 
 
-            Thread.sleep(DELAY);
+            Thread.sleep((int)Math.random()*(MAXDELAY-MINDELAY)+MINDELAY);
             foodItem = FoodFactory.makeFood();
-            Thread.sleep(DELAY / 2);
-
+            Thread.sleep(MAXDELAY / 2);
             foodItem.getPicture().delete();
 
         }
+        gameOn = false;
         gameOver();
     }
 
     public void playersCreation() {
-        player1 = new Character(0, 230, 350, "Pics/Taz2.png");
-        player2 = new Character(0, 870, 350, "Pics/coyote2.png");
+        player1 = new Character();
+        player2 = new Character();
     }
 
     public void playersAppearence() {
@@ -63,25 +68,32 @@ public class Game {
     public void commandsOn() {
         Keyboard kbPlayer1 = new Keyboard(player1);
         KeyboardEvent aPressed = new KeyboardEvent();
-        setCommands(aPressed, KeyboardEvent.KEY_A);
+        KeyboardEvent aDpressed = new KeyboardEvent();
+        setCommands(aPressed, KeyboardEvent.KEY_A, KeyboardEventType.KEY_PRESSED);
+        setCommands(aDpressed, KeyboardEvent.KEY_A, KeyboardEventType.KEY_RELEASED);
 
         Keyboard kbPlayer2 = new Keyboard(player2);
         KeyboardEvent kPressed = new KeyboardEvent();
-        setCommands(kPressed, KeyboardEvent.KEY_K);
+        KeyboardEvent kDpressed = new KeyboardEvent();
+        setCommands(kPressed, KeyboardEvent.KEY_K, KeyboardEventType.KEY_PRESSED);
+        setCommands(kDpressed, KeyboardEvent.KEY_K, KeyboardEventType.KEY_RELEASED);
 
         kbPlayer1.addEventListener(aPressed);
+        kbPlayer1.addEventListener(aDpressed);
         kbPlayer2.addEventListener(kPressed);
+        kbPlayer2.addEventListener(kDpressed);
 
     }
 
-    public void setCommands(KeyboardEvent keyboardEventName, int keyboardEvent) {
+    public void setCommands(KeyboardEvent keyboardEventName, int keyboardEvent, KeyboardEventType keyboardEventType) {
         keyboardEventName.setKey(keyboardEvent);
-        keyboardEventName.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboardEventName.setKeyboardEventType(keyboardEventType);
 
     }
 
-    public void scoreAppearence() {
-        scorePlayer1Shadow = new Text(93, 51, "Score: " + player1.getScore());
+
+    public void scoreAppear() {
+        scorePlayer1Shadow = new Text(93,51, "Score: " + player1.getScore());
         scorePlayer1 = new Text(90, 50, "Score: " + player1.getScore());
         scorePlayer2Shadow = new Text(1153, 51, "Score: " + player2.getScore());
         scorePlayer2 = new Text(1150, 50, "Score: " + player2.getScore());
@@ -120,4 +132,21 @@ public class Game {
         System.out.println("Player 2 wins");
         Field.playerTwoVictory();
     }
+
+    @Override
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
+            gameOn();
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyboardEvent keyboardEvent) {
+
+    }
+
+    public void gameOn() {
+        gameOn = true;
+    }
+
 }
