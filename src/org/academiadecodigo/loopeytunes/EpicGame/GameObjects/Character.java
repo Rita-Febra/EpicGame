@@ -16,8 +16,22 @@ public class Character extends GameObjects implements KeyboardHandler {
 
     public void eat(int score, int col, int row, String path) {
         changePic(col, row, path);
-        this.score += score;
+
+        switch (Game.getFoodItem().getType()) {
+            case BOMB:
+                if (this.getScore() > 0) {
+                    this.score = 0;
+                }
+                break;
+
+            case SPECIAL:
+                break;
+
+            default:
+                this.score += score;
+        }
         Game.getFoodItem().getsEaten();
+
 
     }
 

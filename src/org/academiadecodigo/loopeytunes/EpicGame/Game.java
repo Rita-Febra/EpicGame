@@ -3,6 +3,7 @@ package org.academiadecodigo.loopeytunes.EpicGame;
 import org.academiadecodigo.loopeytunes.EpicGame.Factorys.FoodFactory;
 import org.academiadecodigo.loopeytunes.EpicGame.GameObjects.Character;
 import org.academiadecodigo.loopeytunes.EpicGame.GameObjects.Food;
+import org.academiadecodigo.loopeytunes.EpicGame.GameObjects.FoodType;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -14,9 +15,9 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class Game implements KeyboardHandler {
     private static final int MAXDELAY = 2000;
     private static final int MINDELAY = 1000;
-    private static final int FOOD_TOTAL = 10;
+    private static final int FOOD_TOTAL = 100;
     private final Field field;
-    private static Food foodItem = new Food(0, "Pics/Transparent.png");
+    private static Food foodItem = new Food(0, "Pics/Transparent.png", FoodType.GOOD);
     private Character player1;
     private Character player2;
     private Text scorePlayer1;
@@ -55,8 +56,7 @@ public class Game implements KeyboardHandler {
             playersAppearance();
             scoreUpdate();
 
-            Thread.sleep((int) (Math.random() * (MAXDELAY - MINDELAY)) + MINDELAY);
-
+            Thread.sleep((int)(Math.random()*(MAXDELAY-MINDELAY)+MINDELAY));
             foodItem = FoodFactory.makeFood();
 
             Thread.sleep(MAXDELAY / 2);
