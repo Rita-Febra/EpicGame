@@ -15,6 +15,7 @@ public class GameObjects {
         if (body != null) {
             body.delete();
         }
+
         body = new Picture(col, row, src);
         body.draw();
     }

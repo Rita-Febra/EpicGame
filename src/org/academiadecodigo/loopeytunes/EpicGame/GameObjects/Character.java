@@ -7,13 +7,10 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Character extends GameObjects implements KeyboardHandler {
-    private CharactersType type;
 
-    public Character(CharactersType type) {
-        super(0, 0,0,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/Taz2.png");
-        this.type = type;
+    public Character() {
+        super(0, 0,0,"Pics/Taz2.png");
     }
-
 
     public void eat(int score,int col, int row, String path) {
         changePic(col,row,path);
@@ -22,17 +19,17 @@ public class Character extends GameObjects implements KeyboardHandler {
 
     }
 
-
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_A) {
             if (!Game.foodItem.wasEaten()) {
-                eat(Game.foodItem.score, 230,350 ,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/Taz1.png");
+                eat(Game.foodItem.score, 230,350 ,"Pics/Taz1.png");
             }
         }
+
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_K) {
             if (!Game.foodItem.wasEaten()) {
-                eat(Game.foodItem.score, 680, 350,"/Users/codecadet/Desktop/EpicGame/epicgame/Pics/Coyote1.png");
+                eat(Game.foodItem.score, 680, 350,"Pics/Coyote1.png");
             }
         }
     }
