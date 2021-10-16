@@ -4,15 +4,16 @@ package org.academiadecodigo.loopeytunes.EpicGame.GameObjects;
 import org.academiadecodigo.loopeytunes.EpicGame.Game;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 
 public class Character extends GameObjects implements KeyboardHandler {
 
-    public Character() {
-        super(0, 0,0,"Pics/Taz2.png");
+
+    public Character(int score, int col, int row, String path) {
+        super(score, col, row, path);
     }
 
-    public void eat(int score,int col, int row, String path) {
+    public void eat(int score, int col, int row, String path) {
         changePic(col,row,path);
         this.score += score;
         Game.foodItem.getsEaten();

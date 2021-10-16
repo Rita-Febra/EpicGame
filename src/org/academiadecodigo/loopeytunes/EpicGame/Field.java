@@ -4,6 +4,8 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.util.Locale;
+
 public class Field {
     private static final Picture FIELD = new Picture(10,10,"Pics/Background.jpeg");
     private static final Picture GAME_OVER_SCREEN = new Picture(10,10,"Pics/GameOver.png");
@@ -35,7 +37,7 @@ public class Field {
 
     }
 
-    public static void PlayerTwoVictory() {
+    public static void playerTwoVictory() {
         GAME_OVER_SCREEN.draw();
         COYOTE_WINS.grow(-20,-60);
         COYOTE_WINS.draw();
@@ -50,7 +52,7 @@ public class Field {
         winner.draw();
     }
 
-    public static void Draw() {
+    public static void tie() {
         GAME_OVER_SCREEN.draw();
         TAZ_TIE.draw();
         COYOTE_TIE.grow(-60,-140);
@@ -63,5 +65,16 @@ public class Field {
         winner.grow(280, 60);
         shadow.draw();
         winner.draw();
+    }
+
+    public static void drawText(String text, int col, int row,int growCol,int growRow,Color color){
+        Text shadow = new Text(col+3,row+2,text.toUpperCase(Locale.ROOT));
+        Text  stringText = new Text(col,row,text.toUpperCase(Locale.ROOT));
+        shadow.setColor(Color.BLACK);
+        stringText.setColor(color);
+        shadow.grow(growCol,growRow);
+        stringText.grow(growCol,growRow);
+        shadow.draw();
+        stringText.draw();
     }
 }
