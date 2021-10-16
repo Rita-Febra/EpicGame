@@ -15,7 +15,7 @@ public class FoodFactory {
             case BOMB:
                 return new Food(0, "Pics/bomb.png", FoodType.BOMB);
             default:
-                return new Food(5, "Pics/SuperJuice.png", FoodType.SPECIAL);//most multiply to number of clicks
+                return new Food(60, "Pics/SuperJuice.png", FoodType.SPECIAL);//most multiply to number of clicks
         }
 
 

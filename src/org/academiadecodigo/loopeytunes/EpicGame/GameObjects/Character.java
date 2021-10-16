@@ -24,9 +24,6 @@ public class Character extends GameObjects implements KeyboardHandler {
                 }
                 break;
 
-            case SPECIAL:
-                break;
-
             default:
                 this.score += score;
         }
@@ -40,13 +37,13 @@ public class Character extends GameObjects implements KeyboardHandler {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_A) {
             if (!Game.getFoodItem().wasEaten() && Game.isGameOn()) {
                 eat(Game.getFoodItem().score, 230, 350, "Pics/Taz1.png");
-
             }
         }
 
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_K) {
             if (!Game.getFoodItem().wasEaten() && Game.isGameOn()) {
                 eat(Game.getFoodItem().score, 680, 350, "Pics/Coyote1.png");
+
             }
         }
     }
@@ -63,7 +60,7 @@ public class Character extends GameObjects implements KeyboardHandler {
                     }
                 }
             };
-            timer.schedule(task, 200);
+            timer.schedule(task, 300);
 
         }
 
@@ -78,7 +75,7 @@ public class Character extends GameObjects implements KeyboardHandler {
                     }
                 }
             };
-            timer.schedule(task, 200);
+            timer.schedule(task, 300);
 
         }
     }
