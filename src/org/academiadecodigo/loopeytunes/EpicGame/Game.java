@@ -14,7 +14,7 @@ public class Game implements KeyboardHandler {
     private static final int MAXDELAY = 2000;
     private static final int MINDELAY = 1000;
 
-    private static final int FOOD_TOTAL = 10;
+    private static final int FOOD_TOTAL = 100;
     public static Food foodItem;
     private Character player1;
     private Character player2;
@@ -42,7 +42,7 @@ public class Game implements KeyboardHandler {
             scoreUpdate();
 
 
-            Thread.sleep((int)Math.random()*(MAXDELAY-MINDELAY)+MINDELAY);
+            Thread.sleep((int)(Math.random()*(MAXDELAY-MINDELAY)+MINDELAY));
             foodItem = FoodFactory.makeFood();
             Thread.sleep(MAXDELAY / 2);
 

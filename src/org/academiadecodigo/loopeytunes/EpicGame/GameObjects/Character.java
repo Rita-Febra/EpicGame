@@ -16,9 +16,21 @@ public class Character extends GameObjects implements KeyboardHandler {
     }
 
 
-    public void eat(int score,int col, int row, String path) {
-        changePic(col,row,path);
-        this.score += score;
+    public void eat(int score, int col, int row, String path) {
+        changePic(col, row, path);
+        switch (Game.foodItem.getType()) {
+            case BOMB:
+                if (this.getScore() > 0) {
+                    this.score = 0;
+                }
+                break;
+
+            case SPECIAL:
+                break;
+
+            default:
+                this.score += score;
+        }
         Game.foodItem.getsEaten();
 
     }
@@ -26,14 +38,14 @@ public class Character extends GameObjects implements KeyboardHandler {
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_A) {
-            if (!Game.foodItem.wasEaten()&&Game.gameOn) {
+            if (!Game.foodItem.wasEaten() && Game.gameOn) {
                 eat(Game.foodItem.score, 230, 350, "Pics/Taz1.png");
 
             }
         }
 
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_K) {
-            if (!Game.foodItem.wasEaten()&&Game.gameOn) {
+            if (!Game.foodItem.wasEaten() && Game.gameOn) {
                 eat(Game.foodItem.score, 680, 350, "Pics/Coyote1.png");
             }
         }
@@ -63,7 +75,7 @@ public class Character extends GameObjects implements KeyboardHandler {
                     if (Game.gameOn) {
                         changePic(870, 350, "Pics/Coyote2.png");
 
-                        }
+                    }
                 }
             };
             timer.schedule(task, 200);
