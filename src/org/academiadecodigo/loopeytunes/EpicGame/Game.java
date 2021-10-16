@@ -15,7 +15,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class Game implements KeyboardHandler {
     private static final int MAXDELAY = 2000;
     private static final int MINDELAY = 1000;
-    private static final int FOOD_TOTAL = 3;
+    private static final int FOOD_TOTAL = 10;
     private final Field field;
     private static Food foodItem = new Food(0, "Pics/Transparent.png", FoodType.GOOD);
     private Character player1;
@@ -36,7 +36,8 @@ public class Game implements KeyboardHandler {
         while (!gameOn) {
             Thread.sleep(MINDELAY);
         }
-        this.field.HideStart();
+        field.hideRules();
+        this.field.hideStart();
         startEngine();
 
     }
@@ -51,7 +52,6 @@ public class Game implements KeyboardHandler {
 
             Thread.sleep((int) (Math.random() * (MAXDELAY - MINDELAY) + MINDELAY));
             foodItem = FoodFactory.makeFood();
-
             Thread.sleep(MAXDELAY / 2);
 
             foodItem.getPicture().delete();
@@ -96,7 +96,6 @@ public class Game implements KeyboardHandler {
         keyboardEventName.setKeyboardEventType(keyboardEventType);
 
     }
-
 
     public void scoreAppear() {
         scorePlayer1Shadow = new Text(93, 51, "Score: " + player1.getScore());
