@@ -17,6 +17,7 @@ public class Game implements KeyboardHandler {
     private static final int MINDELAY = 1000;
     private static final int FOOD_TOTAL = 3;
     private final Field field;
+    private static boolean gameOn = false;
     private static Food foodItem = new Food(0, "Pics/Transparent.png", FoodType.GOOD);
     private Character player1;
     private Character player2;
@@ -24,7 +25,7 @@ public class Game implements KeyboardHandler {
     private Text scorePlayer1Shadow;
     private Text scorePlayer2;
     private Text scorePlayer2Shadow;
-    private static boolean gameOn = false;
+
 
     public Game(Field field) {
         this.field = field;
@@ -48,6 +49,12 @@ public class Game implements KeyboardHandler {
         for (int i = 0; i < FOOD_TOTAL; i++) {
             playersAppearance();
             scoreUpdate();
+
+            while (!(player1.hasReachedForFood() || player2.hasReachedForFood())){
+               // player1.getsAlive();
+               // player2.getsAlive();
+            }
+
 
             Thread.sleep((int) (Math.random() * (MAXDELAY - MINDELAY) + MINDELAY));
             foodItem = FoodFactory.makeFood();

@@ -9,10 +9,16 @@ import java.util.TimerTask;
 
 public class Character extends GameObjects implements KeyboardHandler {
 
+    private boolean reachedForFood;
+
+
     public Character() {
         super(0);
     }
 
+    public void getsAlive(){
+
+    }
 
     public void eat(int score, int col, int row, String path) {
         changePic(col, row, path);
@@ -35,10 +41,16 @@ public class Character extends GameObjects implements KeyboardHandler {
 
     }
 
+    public boolean hasReachedForFood() {
+        return reachedForFood;
+    }
+
+
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_A) {
             if (!Game.getFoodItem().wasEaten() && Game.isGameOn()) {
+                reachedForFood = true;
                 eat(Game.getFoodItem().score, 230, 350, "Pics/Taz1.png");
 
             }
@@ -46,6 +58,7 @@ public class Character extends GameObjects implements KeyboardHandler {
 
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_K) {
             if (!Game.getFoodItem().wasEaten() && Game.isGameOn()) {
+                reachedForFood = true;
                 eat(Game.getFoodItem().score, 680, 350, "Pics/Coyote1.png");
             }
         }
@@ -60,6 +73,7 @@ public class Character extends GameObjects implements KeyboardHandler {
                 public void run() {
                     if (Game.isGameOn()) {
                         changePic(230, 350, "Pics/Taz2.png");
+                        reachedForFood = false;
                     }
                 }
             };
@@ -74,7 +88,7 @@ public class Character extends GameObjects implements KeyboardHandler {
                 public void run() {
                     if (Game.isGameOn()) {
                         changePic(870, 350, "Pics/Coyote2.png");
-
+                        reachedForFood = false;
                     }
                 }
             };
