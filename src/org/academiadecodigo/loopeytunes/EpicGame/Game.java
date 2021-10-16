@@ -15,7 +15,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class Game implements KeyboardHandler {
     private static final int MAXDELAY = 2000;
     private static final int MINDELAY = 1000;
-    private static final int FOOD_TOTAL = 100;
+    private static final int FOOD_TOTAL = 3;
     private final Field field;
     private static Food foodItem = new Food(0, "Pics/Transparent.png", FoodType.GOOD);
     private Character player1;
@@ -30,13 +30,6 @@ public class Game implements KeyboardHandler {
         this.field = field;
     }
 
-    public static Food getFoodItem() {
-        return foodItem;
-    }
-
-    public static boolean isGameOn() {
-        return gameOn;
-    }
 
     public void start() throws InterruptedException {
         playersCreation();
@@ -56,7 +49,7 @@ public class Game implements KeyboardHandler {
             playersAppearance();
             scoreUpdate();
 
-            Thread.sleep((int)(Math.random()*(MAXDELAY-MINDELAY)+MINDELAY));
+            Thread.sleep((int) (Math.random() * (MAXDELAY - MINDELAY) + MINDELAY));
             foodItem = FoodFactory.makeFood();
 
             Thread.sleep(MAXDELAY / 2);
@@ -140,6 +133,20 @@ public class Game implements KeyboardHandler {
         field.playerTwoVictory();
     }
 
+
+    public static Food getFoodItem() {
+        return foodItem;
+    }
+
+    public void gameOn() {
+        gameOn = true;
+    }
+
+    public static boolean isGameOn() {
+        return gameOn;
+    }
+
+
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
@@ -150,10 +157,6 @@ public class Game implements KeyboardHandler {
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
-    }
-
-    public void gameOn() {
-        gameOn = true;
     }
 
 }
