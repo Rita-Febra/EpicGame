@@ -19,35 +19,37 @@ public class Game implements KeyboardHandler {
     public static Food foodItem = new Food(0,"Pics/Transparent.png");
     private Character player1;
     private Character player2;
-    private Text[] scoreText;
-    Text scorePlayer1;
-    Text scorePlayer1Shadow;
-    Text scorePlayer2;
-    Text scorePlayer2Shadow;
+    private Text scorePlayer1;
+    private Text scorePlayer1Shadow;
+    private Text scorePlayer2;
+    private Text scorePlayer2Shadow;
     public static boolean gameOn = false;
 
 
     public void start() throws InterruptedException {
         playersCreation();
-        scoreAppear();
+        while (!gameOn) {
+            Thread.sleep(MINDELAY);
+        }
+        Field.HideStart();
         startEngine();
 
     }
 
     public void startEngine() throws InterruptedException {
         commandsOn();
-        while (!gameOn) {
-            Thread.sleep(MINDELAY);
-        }
-        Field.HideStart();
+        scoreAppear();
+
         for (int i = 0; i < FOOD_TOTAL; i++) {
-            playersAppearence();
+            playersAppearance();
             scoreUpdate();
 
+            Thread.sleep((int) (Math.random() * (MAXDELAY - MINDELAY)) +MINDELAY);
 
-            Thread.sleep((int)Math.random()*(MAXDELAY-MINDELAY)+MINDELAY);
             foodItem = FoodFactory.makeFood();
+
             Thread.sleep(MAXDELAY / 2);
+
             foodItem.getPicture().delete();
 
         }
@@ -60,7 +62,7 @@ public class Game implements KeyboardHandler {
         player2 = new Character();
     }
 
-    public void playersAppearence() {
+    public void playersAppearance() {
         player1.changePic(230, 350, "Pics/Taz2.png");
         player2.changePic(870, 350, "Pics/coyote2.png");
     }
@@ -97,16 +99,10 @@ public class Game implements KeyboardHandler {
         scorePlayer1 = new Text(90, 50, "Score: " + player1.getScore());
         scorePlayer2Shadow = new Text(1153, 51, "Score: " + player2.getScore());
         scorePlayer2 = new Text(1150, 50, "Score: " + player2.getScore());
-        scoreText = new Text[]{scorePlayer1Shadow, scorePlayer1, scorePlayer2Shadow, scorePlayer2};
 
-        for (int i = 0; i < 4; i++) {
-            Text text = scoreText[i];
-            text.grow(40, 15);
-            if (i%2!=0){
-                text.setColor(Color.YELLOW);
-            }
-            text.draw();
-        }
+        Field.drawText(scorePlayer1,scorePlayer1Shadow,40,15,Color.YELLOW);
+        Field.drawText(scorePlayer2,scorePlayer2Shadow,40,15,Color.YELLOW);
+
     }
 
     public void scoreUpdate() {

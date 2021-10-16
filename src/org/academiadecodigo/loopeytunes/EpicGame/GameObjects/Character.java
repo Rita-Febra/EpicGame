@@ -1,10 +1,8 @@
 package org.academiadecodigo.loopeytunes.EpicGame.GameObjects;
 
-
 import org.academiadecodigo.loopeytunes.EpicGame.Game;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.Timer;
 import java.util.TimerTask;

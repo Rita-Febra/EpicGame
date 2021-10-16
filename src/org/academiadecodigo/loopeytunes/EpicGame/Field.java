@@ -23,7 +23,6 @@ public class Field {
     }
 
     public static void generateStart() {
-        System.out.println("ola");
         START.draw();
     }
 
@@ -34,13 +33,9 @@ public class Field {
         COYOTE_LOSES.grow(-50, -80);
         COYOTE_LOSES.draw();
         Text shadow = new Text(643, 292, "TAZ WINS!!");
-        shadow.setColor(Color.BLACK);
         Text winner = new Text(640, 290, "TAZ WINS!!");
-        winner.setColor(Color.YELLOW);
-        shadow.grow(280, 60);
-        winner.grow(280, 60);
-        shadow.draw();
-        winner.draw();
+        drawText(winner, shadow, 280, 60, Color.YELLOW);
+
 
     }
 
@@ -50,13 +45,9 @@ public class Field {
         COYOTE_WINS.draw();
         TAZ_LOSES.draw();
         Text shadow = new Text(643, 292, "COYOTE WINS!!");
-        shadow.setColor(Color.BLACK);
         Text winner = new Text(640, 290, "COYOTE WINS!!");
-        winner.setColor(Color.YELLOW);
-        shadow.grow(280, 60);
-        winner.grow(280, 60);
-        shadow.draw();
-        winner.draw();
+        drawText(winner, shadow, 280, 60, Color.YELLOW);
+
     }
 
     public static void tie() {
@@ -65,24 +56,18 @@ public class Field {
         COYOTE_TIE.grow(-60, -140);
         COYOTE_TIE.draw();
         Text shadow = new Text(643, 292, "IT'S A TIE!!");
-        shadow.setColor(Color.BLACK);
         Text winner = new Text(640, 290, "IT'S A TIE!!");
-        winner.setColor(Color.YELLOW);
-        shadow.grow(280, 60);
-        winner.grow(280, 60);
-        shadow.draw();
-        winner.draw();
+        drawText(winner, shadow, 280, 60, Color.YELLOW);
+
     }
 
-    public static void drawText(String text, int col, int row, int growCol, int growRow, Color color) {
-        Text shadow = new Text(col + 3, row + 2, text.toUpperCase(Locale.ROOT));
-        Text stringText = new Text(col, row, text.toUpperCase(Locale.ROOT));
-        shadow.setColor(Color.BLACK);
-        stringText.setColor(color);
-        shadow.grow(growCol, growRow);
-        stringText.grow(growCol, growRow);
-        shadow.draw();
-        stringText.draw();
+    public static void drawText(Text text, Text textShadow, int growCol, int growRow, Color color) {
+        textShadow.setColor(Color.BLACK);
+        text.setColor(color);
+        textShadow.grow(growCol, growRow);
+        text.grow(growCol, growRow);
+        textShadow.draw();
+        text.draw();
 
     }
 
