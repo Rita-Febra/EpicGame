@@ -10,14 +10,11 @@ public class Menu {
     public Menu() throws InterruptedException {
         Field.generateField();
         Field.generateStart();
-        optionStart();
     }
 
     public void optionStart() throws InterruptedException {
         Keyboard kbStart = new Keyboard(game);
         KeyboardEvent spacePress = new KeyboardEvent();
-
-
         spacePress.setKey(KeyboardEvent.KEY_SPACE);
         spacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         kbStart.addEventListener(spacePress);

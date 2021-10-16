@@ -10,27 +10,28 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 public class Game implements KeyboardHandler {
-    private static final int DELAY = 2000;
+    private static final int MAXDELAY = 2000;
+    private static final int MINDELAY = 500;
     private static final int FOOD_TOTAL = 10;
     public static Food foodItem;
     private Character player1;
     private Character player2;
     private Text scorePlayer1;
     private Text scorePlayer2;
-    private boolean gameOn = false;
-
+    public static boolean gameOn = false;
 
 
     public void start() throws InterruptedException {
         playerCreat();
         scoreAppear();
         startEngine();
+
     }
 
     public void startEngine() throws InterruptedException {
         commandsOn();
         while (!gameOn) {
-            Thread.sleep(DELAY);
+            Thread.sleep(MINDELAY);
         }
         Field.HideStart();
         for (int i = 0; i < FOOD_TOTAL; i++) {
@@ -38,14 +39,14 @@ public class Game implements KeyboardHandler {
             scoreUpdate();
 
 
-            Thread.sleep(DELAY);
+            Thread.sleep((int)Math.random()*(MAXDELAY-MINDELAY)+MINDELAY);
             foodItem = FoodFactory.makeFood();
-            Thread.sleep(DELAY / 2);
+            Thread.sleep(MAXDELAY / 2);
 
             foodItem.getPicture().delete();
 
         }
-
+        gameOn = false;
         if (player1.getScore() > player2.getScore()) {
             System.out.println("Player 1 wins");
             Field.playerOneVictory();
@@ -76,21 +77,26 @@ public class Game implements KeyboardHandler {
     public void commandsOn() {
         Keyboard kbPlayer1 = new Keyboard(player1);
         KeyboardEvent aPressed = new KeyboardEvent();
-        setCommands(aPressed, KeyboardEvent.KEY_A);
+        KeyboardEvent aDpressed = new KeyboardEvent();
+        setCommands(aPressed, KeyboardEvent.KEY_A, KeyboardEventType.KEY_PRESSED);
+        setCommands(aDpressed, KeyboardEvent.KEY_A, KeyboardEventType.KEY_RELEASED);
 
         Keyboard kbPlayer2 = new Keyboard(player2);
         KeyboardEvent kPressed = new KeyboardEvent();
-        setCommands(kPressed, KeyboardEvent.KEY_K);
+        KeyboardEvent kDpressed = new KeyboardEvent();
+        setCommands(kPressed, KeyboardEvent.KEY_K, KeyboardEventType.KEY_PRESSED);
+        setCommands(kDpressed, KeyboardEvent.KEY_K, KeyboardEventType.KEY_RELEASED);
 
         kbPlayer1.addEventListener(aPressed);
+        kbPlayer1.addEventListener(aDpressed);
         kbPlayer2.addEventListener(kPressed);
+        kbPlayer2.addEventListener(kDpressed);
 
     }
 
-    public void setCommands(KeyboardEvent keyboardEventName, int keyboardEvent) {
+    public void setCommands(KeyboardEvent keyboardEventName, int keyboardEvent, KeyboardEventType keyboardEventType) {
         keyboardEventName.setKey(keyboardEvent);
-        keyboardEventName.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
+        keyboardEventName.setKeyboardEventType(keyboardEventType);
     }
 
     public void scoreAppear() {
