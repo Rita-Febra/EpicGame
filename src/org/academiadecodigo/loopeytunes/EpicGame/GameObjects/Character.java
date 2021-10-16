@@ -15,8 +15,9 @@ public class Character extends GameObjects implements KeyboardHandler {
         super(0);
     }
 
-    public void eat(int score, int col, int row, String path) {
-        changePic(col, row, path);
+
+    public void eat(int score,int col, int row, String path) {
+        changePic(col,row,path);
         this.score += score;
         Game.foodItem.getsEaten();
 
@@ -27,6 +28,7 @@ public class Character extends GameObjects implements KeyboardHandler {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_A) {
             if (!Game.foodItem.wasEaten()&&Game.gameOn) {
                 eat(Game.foodItem.score, 230, 350, "Pics/Taz1.png");
+
             }
         }
 

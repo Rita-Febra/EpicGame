@@ -9,9 +9,11 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
+
 public class Game implements KeyboardHandler {
     private static final int MAXDELAY = 2000;
-    private static final int MINDELAY = 500;
+    private static final int MINDELAY = 1000;
+
     private static final int FOOD_TOTAL = 10;
     public static Food foodItem;
     private Character player1;
@@ -19,6 +21,7 @@ public class Game implements KeyboardHandler {
     private Text scorePlayer1;
     private Text scorePlayer2;
     public static boolean gameOn = false;
+
 
 
     public void start() throws InterruptedException {
@@ -97,7 +100,10 @@ public class Game implements KeyboardHandler {
     public void setCommands(KeyboardEvent keyboardEventName, int keyboardEvent, KeyboardEventType keyboardEventType) {
         keyboardEventName.setKey(keyboardEvent);
         keyboardEventName.setKeyboardEventType(keyboardEventType);
+
     }
+
+
 
     public void scoreAppear() {
         scorePlayer1 = new Text(90, 50, "Score: " + player1.getScore());
@@ -129,4 +135,5 @@ public class Game implements KeyboardHandler {
     public void gameOn() {
         gameOn = true;
     }
+
 }

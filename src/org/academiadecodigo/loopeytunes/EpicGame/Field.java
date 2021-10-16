@@ -15,6 +15,7 @@ public class Field {
     private static final Picture TAZ_TIE = new Picture(200, 380, "Pics/TazTie.png");
     private static final Picture COYOTE_TIE = new Picture(820, 160, "Pics/CoyoteTie.png");
 
+
     public static void generateField() {
         FIELD.draw();
     }

@@ -7,7 +7,6 @@ public class Main {
 
         Menu menu = new Menu();
         menu.optionStart();
-        //game.init();
-        //game.start();
+
     }
 }
