@@ -5,11 +5,13 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 
 public class Menu {
-    private Game game = new Game();
+    private final Field field = new Field();
+    private final Game game = new Game(field);
 
-    public Menu() throws InterruptedException {
-        Field.generateField();
-        Field.generateStart();
+
+    public Menu(){
+        field.generateField();
+        field.generateStart();
     }
 
     public void optionStart() throws InterruptedException {

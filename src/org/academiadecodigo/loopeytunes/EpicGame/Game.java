@@ -14,24 +14,35 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class Game implements KeyboardHandler {
     private static final int MAXDELAY = 2000;
     private static final int MINDELAY = 1000;
-
     private static final int FOOD_TOTAL = 10;
-    public static Food foodItem = new Food(0,"Pics/Transparent.png");
+    private final Field field;
+    private static Food foodItem = new Food(0, "Pics/Transparent.png");
     private Character player1;
     private Character player2;
     private Text scorePlayer1;
     private Text scorePlayer1Shadow;
     private Text scorePlayer2;
     private Text scorePlayer2Shadow;
-    public static boolean gameOn = false;
+    private static boolean gameOn = false;
 
+    public Game(Field field) {
+        this.field = field;
+    }
+
+    public static Food getFoodItem() {
+        return foodItem;
+    }
+
+    public static boolean isGameOn() {
+        return gameOn;
+    }
 
     public void start() throws InterruptedException {
         playersCreation();
         while (!gameOn) {
             Thread.sleep(MINDELAY);
         }
-        Field.HideStart();
+        this.field.HideStart();
         startEngine();
 
     }
@@ -44,7 +55,7 @@ public class Game implements KeyboardHandler {
             playersAppearance();
             scoreUpdate();
 
-            Thread.sleep((int) (Math.random() * (MAXDELAY - MINDELAY)) +MINDELAY);
+            Thread.sleep((int) (Math.random() * (MAXDELAY - MINDELAY)) + MINDELAY);
 
             foodItem = FoodFactory.makeFood();
 
@@ -95,13 +106,13 @@ public class Game implements KeyboardHandler {
 
 
     public void scoreAppear() {
-        scorePlayer1Shadow = new Text(93,51, "Score: " + player1.getScore());
+        scorePlayer1Shadow = new Text(93, 51, "Score: " + player1.getScore());
         scorePlayer1 = new Text(90, 50, "Score: " + player1.getScore());
         scorePlayer2Shadow = new Text(1153, 51, "Score: " + player2.getScore());
         scorePlayer2 = new Text(1150, 50, "Score: " + player2.getScore());
 
-        Field.drawText(scorePlayer1,scorePlayer1Shadow,40,15,Color.YELLOW);
-        Field.drawText(scorePlayer2,scorePlayer2Shadow,40,15,Color.YELLOW);
+        field.drawText(scorePlayer1, scorePlayer1Shadow, 40, 15, Color.YELLOW);
+        field.drawText(scorePlayer2, scorePlayer2Shadow, 40, 15, Color.YELLOW);
 
     }
 
@@ -112,21 +123,21 @@ public class Game implements KeyboardHandler {
         scorePlayer2Shadow.setText("Score: " + player2.getScore());
     }
 
-    private void gameOver(){
+    private void gameOver() {
         if (player1.getScore() > player2.getScore()) {
             System.out.println("Player 1 wins");
-            Field.playerOneVictory();
+            field.playerOneVictory();
             return;
         }
 
         if (player1.getScore() == player2.getScore()) {
             System.out.println("It's a tie");
-            Field.tie();
+            field.tie();
             return;
         }
 
         System.out.println("Player 2 wins");
-        Field.playerTwoVictory();
+        field.playerTwoVictory();
     }
 
     @Override

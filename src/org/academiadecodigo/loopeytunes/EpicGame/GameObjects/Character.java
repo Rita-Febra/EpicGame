@@ -17,22 +17,22 @@ public class Character extends GameObjects implements KeyboardHandler {
     public void eat(int score, int col, int row, String path) {
         changePic(col, row, path);
         this.score += score;
-        Game.foodItem.getsEaten();
+        Game.getFoodItem().getsEaten();
 
     }
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_A) {
-            if (!Game.foodItem.wasEaten() && Game.gameOn) {
-                eat(Game.foodItem.score, 230, 350, "Pics/Taz1.png");
+            if (!Game.getFoodItem().wasEaten() && Game.isGameOn()) {
+                eat(Game.getFoodItem().score, 230, 350, "Pics/Taz1.png");
 
             }
         }
 
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_K) {
-            if (!Game.foodItem.wasEaten() && Game.gameOn) {
-                eat(Game.foodItem.score, 680, 350, "Pics/Coyote1.png");
+            if (!Game.getFoodItem().wasEaten() && Game.isGameOn()) {
+                eat(Game.getFoodItem().score, 680, 350, "Pics/Coyote1.png");
             }
         }
     }
@@ -44,7 +44,7 @@ public class Character extends GameObjects implements KeyboardHandler {
             TimerTask task = new TimerTask() {
                 @Override
                 public void run() {
-                    if (Game.gameOn) {
+                    if (Game.isGameOn()) {
                         changePic(230, 350, "Pics/Taz2.png");
                     }
                 }
@@ -58,7 +58,7 @@ public class Character extends GameObjects implements KeyboardHandler {
             TimerTask task = new TimerTask() {
                 @Override
                 public void run() {
-                    if (Game.gameOn) {
+                    if (Game.isGameOn()) {
                         changePic(870, 350, "Pics/Coyote2.png");
 
                     }
