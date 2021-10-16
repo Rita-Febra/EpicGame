@@ -14,14 +14,18 @@ public class Field {
     private final Picture coyoteLoses = new Picture(120, 250, "Pics/CoyoteLoses.png");
     private final Picture tazTie = new Picture(200, 380, "Pics/TazTie.png");
     private final Picture coyoteTie = new Picture(820, 160, "Pics/CoyoteTie.png");
-
+    private final Picture menu = new Picture(10,10,"Pics/Menu.png");
 
     public void generateField() {
         field.draw();
     }
 
     public void generateStart() {
-        start.draw();
+        menu.draw();
+    }
+
+    public void hideRules(){
+        menu.delete();
     }
 
     public void playerOneVictory() {
@@ -69,7 +73,7 @@ public class Field {
 
     }
 
-    public void HideStart() {
+    public void hideStart() {
         start.delete();
     }
 
