@@ -5,17 +5,17 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Field {
-    private final Picture field = new Picture(10, 10, "Pics/Background.jpeg");
-    private final Picture start = new Picture(493, 275, "Pics/Start-button.png");
-    private final Picture gameOverScreen = new Picture(10, 10, "Pics/GameOver.png");
-    private final Picture tazWins = new Picture(550, 420, "Pics/TazWins.png");
-    private final Picture coyoteWins = new Picture(550, 270, "Pics/CoyoteWins.png");
-    private final Picture tazLoses = new Picture(220, 350, "Pics/TazLoses.png");
-    private final Picture coyoteLoses = new Picture(120, 250, "Pics/CoyoteLoses.png");
-    private final Picture tazTie = new Picture(200, 380, "Pics/TazTie.png");
-    private final Picture coyoteTie = new Picture(820, 160, "Pics/CoyoteTie.png");
-    private final Picture menu = new Picture(10, 10, "Pics/Menu.png");
-    public static Picture Boom = new Picture(370, 200, "Pics/boom.png");
+    private final Picture field = new Picture(10, 10, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/Background.jpeg");
+    private final Picture start = new Picture(493, 275, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/Start-button.png");
+    private final Picture gameOverScreen = new Picture(10, 10, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameOver.png");
+    private final Picture tazWins = new Picture(550, 420, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/TazWins.png");
+    private final Picture coyoteWins = new Picture(550, 270, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/CoyoteWins.png");
+    private final Picture tazLoses = new Picture(220, 350, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/TazLoses.png");
+    private final Picture coyoteLoses = new Picture(120, 250, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/CoyoteLoses.png");
+    private final Picture tazTie = new Picture(200, 380, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/TazTie.png");
+    private final Picture coyoteTie = new Picture(820, 160, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/CoyoteTie.png");
+    private final Picture menu = new Picture(10, 10, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/Menu.png");
+    public static Picture Boom = new Picture(370, 200, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Food/boom.png");
 
     public void generateField() {
         field.draw();
