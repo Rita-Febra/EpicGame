@@ -22,17 +22,17 @@ public class Game {
     private static final int MAXDELAY = 2000;
     private static final int MINDELAY = 1000;
     private static final int FOOD_TOTAL = 10;
-    private static final String musicPath = "src/org/academiadecodigo/loopeytunes/EpicGame/resources/soundeffect/LooneyMusic.wav";
-    private static final String winMusicPath = "src/org/academiadecodigo/loopeytunes/EpicGame/resources/soundeffect/WinSound.wav";
-    public static final String eatSound = "src/org/academiadecodigo/loopeytunes/EpicGame/resources/soundeffect/EatSound.wav";
-    public static final String bombSound = "src/org/academiadecodigo/loopeytunes/EpicGame/resources/soundeffect/bombSound.wav";
+    private static final String musicPath = "src/org/academiadecodigo/loopeytunes/EpicGame/resources/LooneyMusic.wav";
+    private static final String winMusicPath = "src/org/academiadecodigo/loopeytunes/EpicGame/resources/WinSound.wav";
+    public static final String eatSound = "src/org/academiadecodigo/loopeytunes/EpicGame/resources/EatSound.wav";
+    public static final String bombSound = "src/org/academiadecodigo/loopeytunes/EpicGame/resources/bombSound.wav";
     private final Field field;
     private static boolean gameOn = false;
-    private static Food foodItem = new Food(0, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/Transparent.png", FoodType.GOOD);
+    private static Food foodItem = new Food(0, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Transparent.png", FoodType.GOOD);
     private static Character taz;
     private static Character coyote;
-    private static String[] tazAnimation = new String[]{"src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/Taz2.1.png", "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/Taz2.2.png", "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/Taz2.3.png", "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/Taz2.2.png"};
-    private static String[] coyoteAnimation = new String[]{"src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/coyote2.png", "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/coyote2.2.png"};
+    private static String[] tazAnimation = new String[]{"src/org/academiadecodigo/loopeytunes/EpicGame/resources/Taz2.1.png", "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Taz2.2.png", "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Taz2.3.png", "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Taz2.2.png"};
+    private static String[] coyoteAnimation = new String[]{"src/org/academiadecodigo/loopeytunes/EpicGame/resources/coyote2.png", "src/org/academiadecodigo/loopeytunes/EpicGame/resources/coyote2.2.png"};
     private Text scorePlayer1;
     private Text scorePlayer1Shadow;
     private Text scorePlayer2;
@@ -96,8 +96,8 @@ public class Game {
     }
 
     public void playersAppearance() {
-        taz.changePic(230, 350, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/Taz2.2.png");
-        coyote.changePic(870, 350, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/coyote2.png");
+        taz.changePic(230, 350, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Taz2.2.png");
+        coyote.changePic(870, 350, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/coyote2.png");
     }
 
     public void commandsOn() {

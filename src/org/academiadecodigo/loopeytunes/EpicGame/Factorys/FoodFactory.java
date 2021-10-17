@@ -9,13 +9,13 @@ public class FoodFactory {
     public static Food makeFood() {
         switch (FoodType.chooseType()) {
             case GOOD:
-                return new Food(20, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Food/Avocado.png", FoodType.GOOD);
+                return new Food(20, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Avocado.png", FoodType.GOOD);
             case BAD:
-                return new Food(-10, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Food/poop.png", FoodType.BAD);
+                return new Food(-10, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/poop.png", FoodType.BAD);
             case BOMB:
-                return new Food(0, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Food/bomb.png", FoodType.BOMB);
+                return new Food(0, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/bomb.png", FoodType.BOMB);
             default:
-                return new Food(60, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Food/SuperJuice.png", FoodType.SPECIAL);//most multiply to number of clicks
+                return new Food(60, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/SuperJuice.png", FoodType.SPECIAL);//most multiply to number of clicks
         }
 
 

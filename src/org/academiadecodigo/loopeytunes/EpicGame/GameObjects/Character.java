@@ -73,7 +73,7 @@ public class Character extends GameObjects implements KeyboardHandler {
             }
             if (!Game.getFoodItem().wasEaten() && Game.isGameOn()) {
                 try {
-                    eat(Game.getFoodItem().score, 230, 350, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/Taz1.png");
+                    eat(Game.getFoodItem().score, 230, 350, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Taz1.png");
                 } catch (UnsupportedAudioFileException e) {
                     e.printStackTrace();
                 } catch (LineUnavailableException e) {
@@ -97,7 +97,7 @@ public class Character extends GameObjects implements KeyboardHandler {
             }
             if (!Game.getFoodItem().wasEaten() && Game.isGameOn()) {
                 try {
-                    eat(Game.getFoodItem().score, 680, 350, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/Coyote1.png");
+                    eat(Game.getFoodItem().score, 680, 350, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Coyote1.png");
                 } catch (UnsupportedAudioFileException e) {
                     e.printStackTrace();
                 } catch (LineUnavailableException e) {
@@ -118,7 +118,7 @@ public class Character extends GameObjects implements KeyboardHandler {
                 @Override
                 public void run() {
                     if (Game.isGameOn()) {
-                        changePic(230, 350, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/Taz2.2.png");
+                        changePic(230, 350, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Taz2.2.png");
                     }
                 }
             };
@@ -133,7 +133,7 @@ public class Character extends GameObjects implements KeyboardHandler {
                 @Override
                 public void run() {
                     if (Game.isGameOn()) {
-                        changePic(870, 350, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Pics/GameObjects/Characters/Coyote2.png");
+                        changePic(870, 350, "src/org/academiadecodigo/loopeytunes/EpicGame/resources/Coyote2.png");
 
                     }
                 }
