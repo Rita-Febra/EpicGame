@@ -5,72 +5,76 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Field {
-    private static final Picture FIELD = new Picture(10, 10, "Pics/Background.jpeg");
-    private static final Picture START = new Picture(493, 275, "Pics/Start-button.png");
-    private static final Picture GAME_OVER_SCREEN = new Picture(10, 10, "Pics/GameOver.png");
-    private static final Picture TAZ_WINS = new Picture(550, 420, "Pics/TazWins.png");
-    private static final Picture COYOTE_WINS = new Picture(550, 270, "Pics/CoyoteWins.png");
-    private static final Picture TAZ_LOSES = new Picture(220, 350, "Pics/TazLoses.png");
-    private static final Picture COYOTE_LOSES = new Picture(120, 250, "Pics/CoyoteLoses.png");
-    private static final Picture TAZ_TIE = new Picture(200, 380, "Pics/TazTie.png");
-    private static final Picture COYOTE_TIE = new Picture(820, 160, "Pics/CoyoteTie.png");
+    private final Picture field = new Picture(10, 10, "Pics/Background.jpeg");
+    private final Picture start = new Picture(493, 275, "Pics/Start-button.png");
+    private final Picture gameOverScreen = new Picture(10, 10, "Pics/GameOver.png");
+    private final Picture tazWins = new Picture(550, 420, "Pics/TazWins.png");
+    private final Picture coyoteWins = new Picture(550, 270, "Pics/CoyoteWins.png");
+    private final Picture tazLoses = new Picture(220, 350, "Pics/TazLoses.png");
+    private final Picture coyoteLoses = new Picture(120, 250, "Pics/CoyoteLoses.png");
+    private final Picture tazTie = new Picture(200, 380, "Pics/TazTie.png");
+    private final Picture coyoteTie = new Picture(820, 160, "Pics/CoyoteTie.png");
+    private final Picture menu = new Picture(10,10,"Pics/Menu.png");
 
-    public static void generateField() {
-        FIELD.draw();
+    public void generateField() {
+        field.draw();
     }
 
-    public static void generateStart() {
-        System.out.println("ola");
-        START.draw();
+    public void generateStart() {
+        menu.draw();
     }
 
-    public static void playerOneVictory() {
-        GAME_OVER_SCREEN.draw();
-        TAZ_WINS.grow(40, 60);
-        TAZ_WINS.draw();
-        COYOTE_LOSES.grow(-50, -80);
-        COYOTE_LOSES.draw();
+    public void hideRules(){
+        menu.delete();
+    }
+
+    public void playerOneVictory() {
+        gameOverScreen.draw();
+        tazWins.grow(40, 60);
+        tazWins.draw();
+        coyoteLoses.grow(-50, -80);
+        coyoteLoses.draw();
         Text shadow = new Text(643, 292, "TAZ WINS!!");
-        shadow.setColor(Color.BLACK);
         Text winner = new Text(640, 290, "TAZ WINS!!");
-        winner.setColor(Color.YELLOW);
-        shadow.grow(280, 60);
-        winner.grow(280, 60);
-        shadow.draw();
-        winner.draw();
+        drawText(winner, shadow, 280, 60, Color.YELLOW);
+
 
     }
 
-    public static void PlayerTwoVictory() {
-        GAME_OVER_SCREEN.draw();
-        COYOTE_WINS.grow(-20, -60);
-        COYOTE_WINS.draw();
-        TAZ_LOSES.draw();
+    public void playerTwoVictory() {
+        gameOverScreen.draw();
+        coyoteWins.grow(-20, -60);
+        coyoteWins.draw();
+        tazLoses.draw();
         Text shadow = new Text(643, 292, "COYOTE WINS!!");
-        shadow.setColor(Color.BLACK);
         Text winner = new Text(640, 290, "COYOTE WINS!!");
-        winner.setColor(Color.YELLOW);
-        shadow.grow(280, 60);
-        winner.grow(280, 60);
-        shadow.draw();
-        winner.draw();
+        drawText(winner, shadow, 280, 60, Color.YELLOW);
+
     }
 
-    public static void Draw() {
-        GAME_OVER_SCREEN.draw();
-        TAZ_TIE.draw();
-        COYOTE_TIE.grow(-60, -140);
-        COYOTE_TIE.draw();
+    public void tie() {
+        gameOverScreen.draw();
+        tazTie.draw();
+        coyoteTie.grow(-60, -140);
+        coyoteTie.draw();
         Text shadow = new Text(643, 292, "IT'S A TIE!!");
-        shadow.setColor(Color.BLACK);
         Text winner = new Text(640, 290, "IT'S A TIE!!");
-        winner.setColor(Color.YELLOW);
-        shadow.grow(280, 60);
-        winner.grow(280, 60);
-        shadow.draw();
-        winner.draw();
+        drawText(winner, shadow, 280, 60, Color.YELLOW);
+
     }
-    public static void HideStart(){
-        START.delete();
+
+    public void drawText(Text text, Text textShadow, int growCol, int growRow, Color color) {
+        textShadow.setColor(Color.BLACK);
+        text.setColor(color);
+        textShadow.grow(growCol, growRow);
+        text.grow(growCol, growRow);
+        textShadow.draw();
+        text.draw();
+
     }
+
+    public void hideStart() {
+        start.delete();
+    }
+
 }
