@@ -7,7 +7,7 @@ public enum FoodType {
     BAD;
 
     public static FoodType chooseType() {
-        double odd = Math.random();
+      double odd = Math.random();
         if (odd<0.5){
             return GOOD;
         }

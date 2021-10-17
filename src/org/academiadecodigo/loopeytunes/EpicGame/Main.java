@@ -1,16 +1,15 @@
 package org.academiadecodigo.loopeytunes.EpicGame;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+
 public class Main {
 
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws InterruptedException, UnsupportedAudioFileException, IOException, LineUnavailableException {
 
-        try {
-            Menu menu = new Menu();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        Menu menu = new Menu();
 
     }
 }

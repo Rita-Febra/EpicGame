@@ -1,9 +1,13 @@
 package org.academiadecodigo.loopeytunes.EpicGame.GameObjects;
 
+import org.academiadecodigo.loopeytunes.EpicGame.Field;
 import org.academiadecodigo.loopeytunes.EpicGame.Game;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -29,11 +33,13 @@ public class Character extends GameObjects implements KeyboardHandler {
     }
 
 
-    public void eat(int score, int col, int row, String path) {
+    public void eat(int score, int col, int row, String path) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         changePic(col, row, path);
 
         switch (Game.getFoodItem().getType()) {
             case BOMB:
+                Field.Boom.draw();
+                Game.soundEffects(Game.bombSound);
                 if (this.getScore() > 0) {
                     this.score = 0;
                 }
@@ -56,15 +62,49 @@ public class Character extends GameObjects implements KeyboardHandler {
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_A) {
             reachedForFood = true;
+            try {
+                Game.soundEffects(Game.eatSound);
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             if (!Game.getFoodItem().wasEaten() && Game.isGameOn()) {
-                eat(Game.getFoodItem().score, 230, 350, "Pics/Taz1.png");
+                try {
+                    eat(Game.getFoodItem().score, 230, 350, "Pics/Taz1.png");
+                } catch (UnsupportedAudioFileException e) {
+                    e.printStackTrace();
+                } catch (LineUnavailableException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_K) {
             reachedForFood = true;
+            try {
+                Game.soundEffects(Game.eatSound);
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             if (!Game.getFoodItem().wasEaten() && Game.isGameOn()) {
-                eat(Game.getFoodItem().score, 680, 350, "Pics/Coyote1.png");
+                try {
+                    eat(Game.getFoodItem().score, 680, 350, "Pics/Coyote1.png");
+                } catch (UnsupportedAudioFileException e) {
+                    e.printStackTrace();
+                } catch (LineUnavailableException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             }
         }

@@ -14,7 +14,8 @@ public class Field {
     private final Picture coyoteLoses = new Picture(120, 250, "Pics/CoyoteLoses.png");
     private final Picture tazTie = new Picture(200, 380, "Pics/TazTie.png");
     private final Picture coyoteTie = new Picture(820, 160, "Pics/CoyoteTie.png");
-    private final Picture menu = new Picture(10,10,"Pics/Menu.png");
+    private final Picture menu = new Picture(10, 10, "Pics/Menu.png");
+    public static Picture Boom = new Picture(370, 200, "Pics/boom.png");
 
     public void generateField() {
         field.draw();
@@ -24,7 +25,7 @@ public class Field {
         menu.draw();
     }
 
-    public void hideRules(){
+    public void hideRules() {
         menu.delete();
     }
 
