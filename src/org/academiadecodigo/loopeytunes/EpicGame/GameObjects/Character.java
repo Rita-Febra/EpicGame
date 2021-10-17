@@ -70,7 +70,7 @@ public class Character extends GameObjects implements KeyboardHandler {
                 @Override
                 public void run() {
                     if (Game.isGameOn()) {
-                        changePic(870, 350, "Pics/Coyote2.png");
+                        changePic(870, 350, "Pics/coyote2.png");
 
                     }
                 }

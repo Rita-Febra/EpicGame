@@ -45,14 +45,14 @@ public class Game implements KeyboardHandler {
     public void startEngine() throws InterruptedException {
         commandsOn();
         scoreAppear();
-
+        playersAppearance();
         for (int i = 0; i < FOOD_TOTAL; i++) {
-            playersAppearance();
+
             scoreUpdate();
 
             Thread.sleep((int) (Math.random() * (MAXDELAY - MINDELAY) + MINDELAY));
             foodItem = FoodFactory.makeFood();
-            Thread.sleep(MAXDELAY / 2);
+            Thread.sleep(MINDELAY);
 
             foodItem.getPicture().delete();
 
