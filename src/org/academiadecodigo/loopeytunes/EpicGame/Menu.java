@@ -11,10 +11,12 @@ public class Menu implements KeyboardHandler {
 
 
     public Menu() throws InterruptedException {
+
         field.generateField();
         field.generateStart();
         commandsOn();
         game.start();
+      //  field.generateStart();
     }
 
     public void commandsOn()  {

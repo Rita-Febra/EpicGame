@@ -21,7 +21,9 @@ public class GameObjects {
         body = new Picture(col, row, src);
         body.draw();
     }
-
+public void bodyDelete(){
+        body.delete();
+}
     public Picture getPicture() {
         return body;
     }
