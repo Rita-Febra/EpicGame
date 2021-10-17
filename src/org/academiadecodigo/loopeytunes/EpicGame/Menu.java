@@ -23,7 +23,7 @@ public class Menu implements KeyboardHandler {
     }
 
     public void commandsOn() {
-        Keyboard kbStart = new Keyboard(game);
+        Keyboard kbStart = new Keyboard(this);
         KeyboardEvent spacePress = new KeyboardEvent();
         spacePress.setKey(KeyboardEvent.KEY_SPACE);
         spacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);

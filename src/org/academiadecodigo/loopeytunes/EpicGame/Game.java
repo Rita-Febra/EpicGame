@@ -14,13 +14,18 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
-public class Game implements KeyboardHandler {
+public class Game {
     private static final int MAXDELAY = 2000;
     private static final int MINDELAY = 1000;
     private static final int FOOD_TOTAL = 10;
-    private static final String musicPath= "src/org/academiadecodigo/loopeytunes/EpicGame/LooneyMusic.wav";
+    private static final String musicPath = "src/org/academiadecodigo/loopeytunes/EpicGame/soundeffect/LooneyMusic.wav";
+    private static final String winMusicPath = "src/org/academiadecodigo/loopeytunes/EpicGame/soundeffect/WinSound.wav";
+    public static final String eatSound = "src/org/academiadecodigo/loopeytunes/EpicGame/soundeffect/EatSound.wav";
+    public static final String bombSound = "src/org/academiadecodigo/loopeytunes/EpicGame/soundeffect/bombSound.wav";
     private final Field field;
     private static boolean gameOn = false;
     private static Food foodItem = new Food(0, "Pics/Transparent.png", FoodType.GOOD);
@@ -32,21 +37,13 @@ public class Game implements KeyboardHandler {
     private Text scorePlayer1Shadow;
     private Text scorePlayer2;
     private Text scorePlayer2Shadow;
+    private Clip clip;
 
-
-    public Game(Field field) {
+    public Game(Field field) throws LineUnavailableException {
         this.field = field;
     }
 
-    public void music() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        File music = new File(musicPath);
-        AudioInputStream audio = AudioSystem.getAudioInputStream(music);
-        Clip clip = AudioSystem.getClip();
-        clip.open(audio);
-        clip.start();
-    }
-
-    public void start() throws InterruptedException {
+    public void start() throws InterruptedException, UnsupportedAudioFileException, LineUnavailableException, IOException {
         playersCreation();
 
         while (!gameOn) {
@@ -58,7 +55,7 @@ public class Game implements KeyboardHandler {
 
     }
 
-    public void startEngine() throws InterruptedException {
+    public void startEngine() throws InterruptedException, UnsupportedAudioFileException, LineUnavailableException, IOException {
         commandsOn();
         scoreAppear();
 
@@ -145,7 +142,8 @@ public class Game implements KeyboardHandler {
         scorePlayer2Shadow.setText("Score: " + coyote.getScore());
     }
 
-    private void gameOver() {
+    private void gameOver() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        music(winMusicPath);
         if (taz.getScore() > coyote.getScore()) {
             System.out.println("Player 1 wins");
             field.playerOneVictory();
@@ -176,16 +174,36 @@ public class Game implements KeyboardHandler {
     }
 
 
-    @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {
-        if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
-            gameOn();
-        }
+    public void music() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        File music = new File(musicPath);
+        AudioInputStream audio = AudioSystem.getAudioInputStream(music);
+        clip = AudioSystem.getClip();
+        clip.open(audio);
+        clip.start();
     }
 
-    @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
+    public static void soundEffects(String soundPath) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+        File music = new File(soundPath);
+        AudioInputStream audio = AudioSystem.getAudioInputStream(music);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audio);
+        clip.start();
+        Timer timer = new Timer();
+        TimerTask tas = new TimerTask() {
+            @Override
+            public void run() {
+                clip.stop();
+            }
+        };
+    }
 
+    public void music(String musicPath) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        clip.stop();
+        File music = new File(musicPath);
+        AudioInputStream audio = AudioSystem.getAudioInputStream(music);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audio);
+        clip.start();
     }
 
 }
