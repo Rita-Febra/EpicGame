@@ -19,8 +19,10 @@ public class Game implements KeyboardHandler {
     private final Field field;
     private static boolean gameOn = false;
     private static Food foodItem = new Food(0, "Pics/Transparent.png", FoodType.GOOD);
-    private Character player1;
-    private Character player2;
+    private static Character taz;
+    private static Character coyote;
+    private static String[] tazAnimation = new String[]{"Pics/Taz2.1.png", "Pics/Taz2.2.png", "Pics/Taz2.3.png", "Pics/Taz2.2.png"};
+    private static String[] coyoteAnimation = new String[]{"Pics/coyote2.png", "Pics/coyote2.2.png"};
     private Text scorePlayer1;
     private Text scorePlayer1Shadow;
     private Text scorePlayer2;
@@ -34,6 +36,7 @@ public class Game implements KeyboardHandler {
 
     public void start() throws InterruptedException {
         playersCreation();
+
         while (!gameOn) {
             Thread.sleep(MINDELAY);
         }
@@ -51,16 +54,12 @@ public class Game implements KeyboardHandler {
             playersAppearance();
             scoreUpdate();
 
-            while (!(player1.hasReachedForFood() || player2.hasReachedForFood())){
-               // player1.getsAlive();
-               // player2.getsAlive();
-            }
+            animation();
 
-
-            Thread.sleep((int) (Math.random() * (MAXDELAY - MINDELAY) + MINDELAY));
             foodItem = FoodFactory.makeFood();
-            Thread.sleep(MAXDELAY / 2);
 
+            Thread.sleep(MAXDELAY / 2);
+            animation();
             foodItem.getPicture().delete();
 
         }
@@ -68,24 +67,35 @@ public class Game implements KeyboardHandler {
         gameOver();
     }
 
+    public void animation() throws InterruptedException {
+        int counter = 0;
+        while (!(taz.hasReachedForFood() || coyote.hasReachedForFood()) && counter<5) {
+            taz.getsAlive(tazAnimation);
+            coyote.getsAlive(coyoteAnimation);
+            Thread.sleep(200);
+            counter++;
+
+        }
+    }
+
     public void playersCreation() {
-        player1 = new Character();
-        player2 = new Character();
+        taz = new Character();
+        coyote = new Character();
     }
 
     public void playersAppearance() {
-        player1.changePic(230, 350, "Pics/Taz2.png");
-        player2.changePic(870, 350, "Pics/coyote2.png");
+        taz.changePic(230, 350, "Pics/Taz2.2.png");
+        coyote.changePic(870, 350, "Pics/coyote2.png");
     }
 
     public void commandsOn() {
-        Keyboard kbPlayer1 = new Keyboard(player1);
+        Keyboard kbPlayer1 = new Keyboard(taz);
         KeyboardEvent aPressed = new KeyboardEvent();
         KeyboardEvent aDpressed = new KeyboardEvent();
         setCommands(aPressed, KeyboardEvent.KEY_A, KeyboardEventType.KEY_PRESSED);
         setCommands(aDpressed, KeyboardEvent.KEY_A, KeyboardEventType.KEY_RELEASED);
 
-        Keyboard kbPlayer2 = new Keyboard(player2);
+        Keyboard kbPlayer2 = new Keyboard(coyote);
         KeyboardEvent kPressed = new KeyboardEvent();
         KeyboardEvent kDpressed = new KeyboardEvent();
         setCommands(kPressed, KeyboardEvent.KEY_K, KeyboardEventType.KEY_PRESSED);
@@ -105,10 +115,10 @@ public class Game implements KeyboardHandler {
     }
 
     public void scoreAppear() {
-        scorePlayer1Shadow = new Text(93, 51, "Score: " + player1.getScore());
-        scorePlayer1 = new Text(90, 50, "Score: " + player1.getScore());
-        scorePlayer2Shadow = new Text(1153, 51, "Score: " + player2.getScore());
-        scorePlayer2 = new Text(1150, 50, "Score: " + player2.getScore());
+        scorePlayer1Shadow = new Text(93, 51, "Score: " + taz.getScore());
+        scorePlayer1 = new Text(90, 50, "Score: " + taz.getScore());
+        scorePlayer2Shadow = new Text(1153, 51, "Score: " + coyote.getScore());
+        scorePlayer2 = new Text(1150, 50, "Score: " + coyote.getScore());
 
         field.drawText(scorePlayer1, scorePlayer1Shadow, 40, 15, Color.YELLOW);
         field.drawText(scorePlayer2, scorePlayer2Shadow, 40, 15, Color.YELLOW);
@@ -116,20 +126,20 @@ public class Game implements KeyboardHandler {
     }
 
     public void scoreUpdate() {
-        scorePlayer1.setText("Score: " + player1.getScore());
-        scorePlayer1Shadow.setText("Score: " + player1.getScore());
-        scorePlayer2.setText("Score: " + player2.getScore());
-        scorePlayer2Shadow.setText("Score: " + player2.getScore());
+        scorePlayer1.setText("Score: " + taz.getScore());
+        scorePlayer1Shadow.setText("Score: " + taz.getScore());
+        scorePlayer2.setText("Score: " + coyote.getScore());
+        scorePlayer2Shadow.setText("Score: " + coyote.getScore());
     }
 
     private void gameOver() {
-        if (player1.getScore() > player2.getScore()) {
+        if (taz.getScore() > coyote.getScore()) {
             System.out.println("Player 1 wins");
             field.playerOneVictory();
             return;
         }
 
-        if (player1.getScore() == player2.getScore()) {
+        if (taz.getScore() == coyote.getScore()) {
             System.out.println("It's a tie");
             field.tie();
             return;
